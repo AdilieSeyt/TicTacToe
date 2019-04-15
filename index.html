@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Tic Tac </title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assets/css/bootstrap.4.3.1.min.css">
+    <link rel="stylesheet" href="assets/css/theme_1553112701202.css">
+</head>
+<body>
+    <style>
+    .row div{
+        height: 160px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 3px;
+        color: white;
+        font-size: 3em;
+        background-color: rgba(240, 248, 255, 0.548);
+        border: 1px solid white;
+    }
+    </style>
+<main>
+<div class="modal-body">
+    <section class="container-fluid  min-vh-100 pt-5 bg-warning">
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-2 card" data-index="1">
+              
+            </div>
+            <div class="col-md-2 card" data-index="2">
+              
+            </div>
+            <div class="col-md-2 card" data-index="3">
+              
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2 card" data-index="4">
+              
+            </div>
+            <div class="col-md-2 card" data-index="5">
+              
+            </div>
+            <div class="col-md-2 card" data-index="6">
+              
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-2 card" data-index="7">
+              
+            </div>
+            <div class="col-md-2 card" data-index="8">
+              
+            </div>
+            <div class="col-md-2 card" data-index="9">
+              
+            </div>
+        </div>
+    </section>
+
+</main>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="assets/js/bootstrap.4.3.1.min.js"></script>
+<script>
+let cards = document.querySelectorAll(".card");
+    let playerAdilie=[],
+        playerTomy=[]
+    let i = 0
+    let winner = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]];
+
+
+    for( let card of cards) {
+        card.addEventListener("click", function(){
+            if(card.innerText){
+                return
+            }else{
+                i++
+                if( i%2 !== 0 ){
+                    this.innerText ="x"
+                    this.classList.add('bg-danger')
+                    playerAdilie.push(Number(this.dataset.index))
+                    if(result(playerAdilie)){        
+                        alert("Congrats player Adilie you win")
+                    }
+                }
+                else{
+                    this.innerText ="o"
+                    this.classList.add('bg-info')
+                    playerTomy.push(Number(this.dataset.index))
+                    if(result(playerTomy)){        
+                        alert("Congrats player Tomy you win")
+                    }
+                }
+                if(i === 9){
+                alert("fin")
+                }
+            }
+        })
+    }
+    console.log(playerAdilie)
+    console.log(playerTomy)
+    const result = function(array){
+    let finalResult = false
+    for(let item of winner){
+        let res = item.every(val => array.indexOf(val) !== -1)
+        if(res){
+        finalResult = true;
+        break;
+    }
+  }
+  return finalResult;
+}
+</script>
+  
+</body>
+</html>
