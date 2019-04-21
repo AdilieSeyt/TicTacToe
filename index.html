@@ -28,6 +28,13 @@
 <main>
 <div class="modal-body">
     <section class="container-fluid  min-vh-100 pt-5 bg-warning">
+            <div class="col-md-6 text-center">
+                <h2 class="scoreFirstPlayer">Adilie :</h2>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2 class="scoreSecondPlayer">Tomy : </h2>
+            </div>
+
         <div class="row justify-content-center mt-5">
             <div class="col-md-2 card" data-index="1">
               
@@ -86,6 +93,8 @@ let cards = document.querySelectorAll(".card");
                     playerAdilie.push(Number(this.dataset.index))
                     if(result(playerAdilie)){        
                         alert("Congrats player Adilie you win")
+                        window.location.reload()
+
                     }
                 }
                 else{
@@ -94,12 +103,15 @@ let cards = document.querySelectorAll(".card");
                     playerTomy.push(Number(this.dataset.index))
                     if(result(playerTomy)){        
                         alert("Congrats player Tomy you win")
+                        window.location.reload()
+
                     }
                 }
                 if(i === 9){
                 alert("fin")
                 }
             }
+         
         })
     }
     console.log(playerAdilie)
@@ -115,6 +127,12 @@ let cards = document.querySelectorAll(".card");
   }
   return finalResult;
 }
+
+    let scoreFirstPlayer = document.querySelector('.scoreFirstPlayer') 
+    let scoreSecondPlayer = document.querySelector('.scoreSecondPlayer') 
+    let scoreFirstPlayer = [],
+        scoreSecondPlayer = []
+
 </script>
   
 </body>
