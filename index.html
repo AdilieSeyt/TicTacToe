@@ -29,10 +29,10 @@
 <div class="modal-body">
     <section class="container-fluid  min-vh-100 pt-5 bg-warning">
             <div class="col-md-6 text-center">
-                <h2 class="scoreFirstPlayer">Adilie :</h2>
+                <h2 class="scoreFirstPlayer"></h2>
             </div>
             <div class="col-md-6 text-center">
-                <h2 class="scoreSecondPlayer">Tomy : </h2>
+                <h2 class="scoreSecondPlayer"></h2>
             </div>
 
         <div class="row justify-content-center mt-5">
@@ -78,8 +78,11 @@ let cards = document.querySelectorAll(".card");
     let playerAdilie=[],
         playerTomy=[]
     let i = 0
-    let winner = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]];
+    let winner = [[1,2,3],[4,5,6],[7,8,9],[1,5,9],[3,5,7],[1,4,7],[2,5,8],[3,6,9]]
 
+    let scoreFirstPlayer = document.querySelector('.scoreFirstPlayer') 
+    let scoreSecondPlayer = document.querySelector('.scoreSecondPlayer') 
+    let player1Score = 0, player2Score = 0
 
     for( let card of cards) {
         card.addEventListener("click", function(){
@@ -91,29 +94,68 @@ let cards = document.querySelectorAll(".card");
                     this.innerText ="x"
                     this.classList.add('bg-danger')
                     playerAdilie.push(Number(this.dataset.index))
-                    if(result(playerAdilie)){        
-                        alert("Congrats player Adilie you win")
-                        window.location.reload()
+                    if(result(playerAdilie)){  
+                        player1Score++      
+                        console.log(player1Score)
+                        scoreFirstPlayer.innerText = "Adilie : " + player1Score + " !"
+                        if(player1Score <= 1){
+                            let card = document.querySelectorAll('.card')
+                                for( let card of cards) {
+                                    card.firstChild.remove()
+                                    card.classList.remove('bg-danger')
+                                    card.classList.remove('bg-info')
+                                    playerAdilie=[]
+                                    playerTomy=[]
+                            }
+                        }
+                        if(player1Score === 3){
+                            alert("Congrats player Adilie you win")
+                            window.location.reload()
+                        }
+
 
                     }
                 }
                 else{
-                    this.innerText ="o"
+                    this.innerText ="0"
                     this.classList.add('bg-info')
                     playerTomy.push(Number(this.dataset.index))
-                    if(result(playerTomy)){        
-                        alert("Congrats player Tomy you win")
-                        window.location.reload()
+
+                    if(result(playerTomy)){   
+                        player2Score++
+                        console.log(player2Score)
+                        scoreSecondPlayer.innerText = "Tomy : " + player2Score + " !"
+                        if(player2Score <= 1){
+                            let card = document.querySelectorAll('.card')
+                                for( let card of cards) {
+                                    card.classList.remove('bg-danger')
+                                    card.classList.remove('bg-info')
+                                    card.firstChild.remove()
+                                    playerAdilie=[]
+                                    playerTomy=[]
+                            }
+                        }
+                        
+                        if(player2Score === 3){
+                            alert("Congrats player Tomy you win")
+                            window.location.reload()
+                        }
+
 
                     }
                 }
-                if(i === 9){
-                alert("fin")
-                }
+                // if(i === 9){
+                // alert("fin")
+                // }
             }
          
         })
     }
+   
+    scoreFirstPlayer.innerText = "Adilie : " + player1Score + " !"
+    scoreSecondPlayer.innerText = "Tomy : " + player2Score + " !"
+
+
     console.log(playerAdilie)
     console.log(playerTomy)
     const result = function(array){
@@ -128,10 +170,6 @@ let cards = document.querySelectorAll(".card");
   return finalResult;
 }
 
-    let scoreFirstPlayer = document.querySelector('.scoreFirstPlayer') 
-    let scoreSecondPlayer = document.querySelector('.scoreSecondPlayer') 
-    let scoreFirstPlayer = [],
-        scoreSecondPlayer = []
 
 </script>
   
